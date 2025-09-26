@@ -14,7 +14,6 @@
         </div>
         
         <div class="content">
-            <!-- Configurações Básicas -->
             <div class="section">
                 <h2><span class="icon">⚙️</span> Configurações da Mensagem</h2>
                 
@@ -23,8 +22,6 @@
                     <input type="text" id="recipient" placeholder="Nome completo do hunter" value="">
                 </div>
             </div>
-            
-            <!-- Pontos de Revisão Predefinidos -->
             <div class="section">
                 <h2><span class="icon">📋</span> Pontos de Revisão</h2>
                 <p style="margin-bottom: 15px; color: #666;">Selecione os itens que precisam ser corrigidos:</p>
@@ -45,21 +42,16 @@
                 
                 <div class="custom-points-list" id="customPointsList"></div>
             </div>
-            
-            <!-- Observações Adicionais -->
             <div class="section">
                 <h2><span class="icon">💬</span> Observações Adicionais</h2>
                 <div class="input-group">
                     <textarea id="additionalNotes" rows="3" placeholder="Adicione observações extras, contexto ou instruções específicas..."></textarea>
                 </div>
             </div>
-            
-            <!-- Botão Gerar -->
             <button class="btn btn-generate" onclick="generateMessage()">
                  Gerar mensagem de QA
             </button>
             
-            <!-- Área de Resultado -->
             <div class="output-section" id="outputSection" style="display: none;">
                 <h2><span class="icon">📄</span> Mensagem Gerada</h2>
                 <div class="message-output" id="messageOutput"></div>
@@ -74,4 +66,5 @@
         initializeCheckboxes();
     </script>
 </body>
+
 </html>
