@@ -2,11 +2,12 @@
         const predefinedPoints = [
             'Está faltando a TAG na Conta pai',
             'Está faltando a TAG na Conta filho',
+            'A conta pai não foi criada',
+            'A conta filho não foi criada',
+            'A oportunidade está na conta pai',
             'Está faltando o anexo do Checklist',
             'Está faltando o anexo do simulador',
             'Está faltando o anexo do DA do seller',
-            'Está faltando a criação da conta pai',
-            'A oportunidade não está na conta filho',
             'Há divergências entre as taxas do simulador e do DA do seller',
             'A solicitação para pricing está pendente',
             'O caso de risco não foi criado',
@@ -117,10 +118,7 @@
             
             if (additionalNotes) {
                 message += `
-OBS:
-
-${additionalNotes}
-
+OBS: ${additionalNotes}
 `;
             }
             
