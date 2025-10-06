@@ -52,6 +52,7 @@
                 selectedPoints.delete(point);
                 item.classList.remove('checked');
             }
+            setTimeout(() => updateClearButtonVisibility(), 0);
         }
         
         function togglePoint(point, checked) {
@@ -60,8 +61,36 @@
             } else {
                 selectedPoints.delete(point);
             }
+            setTimeout(() => updateClearButtonVisibility(), 0);
         }
-        
+
+        function clearAllCheckboxes() {
+            // Limpar todos os checkboxes predefinidos
+            predefinedPoints.forEach((point, index) => {
+                const checkbox = document.getElementById(`point_${index}`);
+                const item = checkbox.closest('.checkbox-item');
+                
+                if (checkbox.checked) {
+                    checkbox.checked = false;
+                    item.classList.remove('checked');
+                }
+            });
+            // Limpar todos os pontos personalizados
+            customPoints = [];
+            selectedPoints.clear();
+            updateCustomPointsList();
+            updateClearButtonVisibility();
+        }
+
+          function updateClearButtonVisibility() {
+            const clearButton = document.getElementById('clearButton');
+            if (selectedPoints.size > 0) {
+                clearButton.style.display = 'block';
+            } else {
+                clearButton.style.display = 'none';
+            }
+        }
+
         function addCustomPoint() {
             const input = document.getElementById('customPoint');
             const point = input.value.trim();
@@ -70,6 +99,7 @@
                 customPoints.push(point);
                 selectedPoints.add(point);
                 updateCustomPointsList();
+                updateClearButtonVisibility();
                 input.value = '';
             }
         }
@@ -78,6 +108,7 @@
             customPoints = customPoints.filter(p => p !== point);
             selectedPoints.delete(point);
             updateCustomPointsList();
+            updateClearButtonVisibility();
         }
         
         function updateCustomPointsList() {
@@ -104,7 +135,7 @@
                 return;
             }
             
-            
+
             // Construir mensagem
             let message = `Olá, @${recipient}, tudo bem? Fizemos o processo de QA e há alguns pontos que preciso que você ajuste antes de seguirmos com o processo de onboarding.
 
