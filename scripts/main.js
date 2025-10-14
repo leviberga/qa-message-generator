@@ -16,13 +16,38 @@
             'O caso de risco está pendente da análise de PLD',
             'A análise de risco está pendente'
         ];
+        const pointPredefinedPoints = [
+         'Está faltando o E-mail',
+         'Está faltando o CNPJ',
+         'Está faltando as Account Tags na conta pai',
+         'Está faltando o simulador',
+         'Está faltando o Cartão CNPJ',
+         'Está faltando o DA da gestão',
+         'Está faltando o DA do seller',
+         'Está faltando o documento do administrador',
+         'Está faltando o documento da empresa',
+         'Há divergências entre o simulador e o DA da gestão',
+         'Há divergências entre o simulador e o DA do seller',
+         'O simulador possui CNPJ divergente do cartão CNPJ',
+         'O simulador possui CNAE divergente do cartão CNPJ',
+         'O CNPJ do caso de risco é divergente do CNPJ do simulador',
+         'O TPV do caso de risco é divergente do TPV do simulador',
+         'A análise de risco está expirada',
+         'O caso de risco foi reprovado'   
+        ]
         
         let customPoints = [];
         let selectedPoints = new Set();
-        
+        let currentPointsArray = predefinedPoints;
+
         // Inicializar checkboxes
         function initializeCheckboxes() {
+            currentPointsArray = predefinedPoints;
+            selectedPoints.clear();
+
             const grid = document.getElementById('checkboxGrid');
+            
+             grid.innerHTML = '';
             
             predefinedPoints.forEach((point, index) => {
                 const div = document.createElement('div');
@@ -36,12 +61,38 @@
                 
                 grid.appendChild(div);
             });
+
+            grid.style.display = 'grid';
+        }
+
+        function pointInitializeCheckboxes() {
+            currentPointsArray = pointPredefinedPoints; 
+            selectedPoints.clear();
+
+            const grid = document.getElementById('checkboxGrid');
+            
+            grid.innerHTML = '';
+            
+            pointPredefinedPoints.forEach((point, index) => {
+                const div = document.createElement('div');
+                div.className = 'checkbox-item';
+                div.onclick = () => toggleCheckbox(index);
+                
+                div.innerHTML = `
+                    <input type="checkbox" id="point_${index}" onchange="togglePoint('${point}', this.checked)">
+                    <label for="point_${index}">${point}</label>
+                `;
+                
+                grid.appendChild(div);
+            });
+
+            grid.style.display = 'grid';
         }
         
         function toggleCheckbox(index) {
             const checkbox = document.getElementById(`point_${index}`);
             const item = checkbox.closest('.checkbox-item');
-            const point = predefinedPoints[index];
+            const point = currentPointsArray[index];
             
             checkbox.checked = !checkbox.checked;
             
@@ -66,14 +117,16 @@
 
         function clearAllCheckboxes() {
             // Limpar todos os checkboxes predefinidos
-            predefinedPoints.forEach((point, index) => {
+            currentPointsArray.forEach((point, index) => {
                 const checkbox = document.getElementById(`point_${index}`);
+                if (checkbox) { 
                 const item = checkbox.closest('.checkbox-item');
                 
                 if (checkbox.checked) {
                     checkbox.checked = false;
                     item.classList.remove('checked');
                 }
+            }
             });
             // Limpar todos os pontos personalizados
             customPoints = [];
