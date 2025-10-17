@@ -75,8 +75,26 @@
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
+            background: #e0e0e0;
+            color: #666666;
         }
-        
+        .switchproduct :hover{
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .switchproduct button.active {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        @media (max-width: 600px) {
+            .switchproduct {
+                float: none;
+                display: flex;
+                justify-content: center;
+                padding-bottom: 5vh;
+            }
+        }
         .input-group label {
             display: block;
             margin-bottom: 8px;

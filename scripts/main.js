@@ -47,8 +47,11 @@
 
             const grid = document.getElementById('checkboxGrid');
             
-             grid.innerHTML = '';
+            grid.innerHTML = '';
             
+            document.getElementById('btn-op').classList.add('active');
+            document.getElementById('btn-point').classList.remove('active');
+
             predefinedPoints.forEach((point, index) => {
                 const div = document.createElement('div');
                 div.className = 'checkbox-item';
@@ -73,6 +76,9 @@
             
             grid.innerHTML = '';
             
+            document.getElementById('btn-op').classList.remove('active');
+            document.getElementById('btn-point').classList.add('active');
+
             pointPredefinedPoints.forEach((point, index) => {
                 const div = document.createElement('div');
                 div.className = 'checkbox-item';
