@@ -5,6 +5,7 @@
             'A conta pai não foi criada',
             'A conta filho não foi criada',
             'A oportunidade está na conta pai',
+            'Há um erro de hierarquia na conta, só deve haver uma única conta pai',
             'Está faltando o anexo do Checklist',
             'Está faltando o anexo do simulador',
             'Está faltando o anexo do DA do seller',
@@ -14,7 +15,8 @@
             'O CNPJ do caso de risco é diferente do CNPJ cadastrado na conta',
             'A análise de risco foi feita há mais de 3 meses',
             'O caso de risco está pendente da análise de PLD',
-            'A análise de risco está pendente'
+            'A análise de risco está pendente',
+            'A plataforma do simulador diverge da plataforma da opp'
         ];
         const pointPredefinedPoints = [
          'Está faltando o E-mail',
