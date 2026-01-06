@@ -13,9 +13,11 @@
             'A solicitação para pricing está pendente',
             'O caso de risco não foi criado',
             'O CNPJ do caso de risco é diferente do CNPJ cadastrado na conta',
+            'O TPV do caso de risco é diferente do TPV informado na oportunidade',
             'A análise de risco foi feita há mais de 3 meses',
             'O caso de risco está pendente da análise de PLD',
             'A análise de risco está pendente',
+            'O cadastro do KYC está incompleto',
             'A plataforma do simulador diverge da plataforma da opp'
         ];
         const pointPredefinedPoints = [
