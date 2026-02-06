@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerador de Mensagens de QA</title>
     <link rel="stylesheet" href="styles/style.css">
-    <script src="scripts/main.js"></script>
 </head>
 <body>
     <div class="container">
@@ -14,10 +13,23 @@
         </div>
         
         <div class="content">
+            <!-- Seção de Tipo de Mensagem - MOVIDA PARA O TOPO -->
             <div class="section">
-                <div class="switchproduct">
-                <button id="btn-op" class="btn-primary active" onclick="initializeCheckboxes();">OP</button>
-                <button id="btn-point" class="btn-primary active" onclick="pointInitializeCheckboxes();">Point</button>
+                <h2><span class="icon">📨</span> Tipo de Mensagem</h2>
+                <div class="message-type-buttons">
+                    <button class="btn btn-message-type active" id="btn-rejection" onclick="setMessageType('rejection')">
+                        ❌ Mensagem de Recusa
+                    </button>
+                    <button class="btn btn-message-type" id="btn-approval" onclick="setMessageType('approval')">
+                        ✅ Mensagem de Aprovação
+                    </button>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="switchproduct" id="switchproduct">
+                    <button id="btn-op" class="btn-primary active" onclick="initializeCheckboxes();">OP</button>
+                    <button id="btn-point" class="btn-primary" onclick="pointInitializeCheckboxes();">Point</button>
                 </div>
                 <h2><span class="icon">⚙️</span> Configurações da Mensagem</h2>
                 <div class="input-group">
@@ -25,36 +37,64 @@
                     <input type="text" id="recipient" placeholder="Nome do hunter" value="">
                 </div>
             </div>
-            <div class="section">
-                <h2><span class="icon">📋</span> Pontos de Revisão</h2>
-                <p style="margin-bottom: 15px; color: #666;">Selecione os itens que precisam ser corrigidos:</p>
-                <button class="btn btn-primary" id="clearButton" onclick="clearAllCheckboxes()" style="margin-bottom: 15px; display: none;">
-                Limpar seleção
-                </button>
-                <div class="checkbox-grid" id="checkboxGrid">
-                    <!-- Checkboxes serão inseridos aqui via JavaScript -->
+            
+            <!-- Seção de checkboxes - só aparece para recusa -->
+            <div class="section" id="rejection-sections">
+                <div class="section">
+                    <h2><span class="icon">📋</span> Pontos de Revisão</h2>
+                    <p style="margin-bottom: 15px; color: #666;">Selecione os itens que precisam ser corrigidos:</p>
+                    <button class="btn btn-primary" id="clearButton" onclick="clearAllCheckboxes()" style="margin-bottom: 15px; display: none;">
+                        Limpar seleção
+                    </button>
+                    <div class="checkbox-grid" id="checkboxGrid">
+                        <!-- Checkboxes serão inseridos aqui via JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Pontos Personalizados -->
+                <div class="section">
+                    <h2><span class="icon">✏️</span> Pontos Personalizados</h2>
+                    
+                    <div class="custom-point">
+                        <input type="text" id="customPoint" placeholder="Digite um ponto de revisão personalizado...">
+                        <button class="btn btn-primary" onclick="addCustomPoint()">Adicionar</button>
+                    </div>
+                    
+                    <div class="custom-points-list" id="customPointsList"></div>
+                </div>
+                
+                <div class="section">
+                    <h2><span class="icon">💬</span> Observações Adicionais</h2>
+                    <div class="input-group">
+                        <textarea id="additionalNotes" rows="3" placeholder="Adicione observações extras, contexto ou instruções específicas..."></textarea>
+                    </div>
                 </div>
             </div>
             
-            <!-- Pontos Personalizados -->
-            <div class="section">
-                <h2><span class="icon">✏️</span> Pontos Personalizados</h2>
-                
-                <div class="custom-point">
-                    <input type="text" id="customPoint" placeholder="Digite um ponto de revisão personalizado...">
-                    <button class="btn btn-primary" onclick="addCustomPoint()">Adicionar</button>
+            <!-- Seleção de Onboarder (apenas para aprovação) -->
+            <div class="section" id="onboarder-section" style="display: none;">
+                <h2><span class="icon">👥</span> Onboarder Responsável</h2>
+                <label style="display: block; margin-bottom: 10px; font-weight: 500; color: #555;">
+                    Selecione o Onboarder responsável:
+                </label>
+                <div class="onboarder-buttons">
+                    <button class="btn btn-onboarder" onclick="selectOnboarder('Janaína', 'https://calendar.app.google/1YAx4GXMqRka1tLJA')">
+                        👤 Janaína
+                    </button>
+                    <button class="btn btn-onboarder" onclick="selectOnboarder('Carol', 'https://calendar.app.google/qZjGf2Q9Vk3vjDRU6')">
+                        👤 Carol
+                    </button>
+                    <button class="btn btn-onboarder" onclick="selectOnboarder('Leandro', 'https://calendar.app.google/bk72wku3YnhqxyRv8')">
+                        👤 Leandro
+                    </button>
                 </div>
-                
-                <div class="custom-points-list" id="customPointsList"></div>
-            </div>
-            <div class="section">
-                <h2><span class="icon">💬</span> Observações Adicionais</h2>
-                <div class="input-group">
-                    <textarea id="additionalNotes" rows="3" placeholder="Adicione observações extras, contexto ou instruções específicas..."></textarea>
+                <div id="selected-onboarder" style="margin-top: 15px; padding: 12px; background: #e3f2fd; border-radius: 8px; display: none;">
+                    <strong>Onboarder selecionado:</strong> <span id="onboarder-name"></span>
                 </div>
             </div>
+            
             <button class="btn btn-generate" onclick="generateMessage()">
-                 Gerar mensagem de QA
+                Gerar mensagem de QA
             </button>
             
             <div class="output-section" id="outputSection" style="display: none;">
@@ -67,9 +107,6 @@
         </div>
     </div>
     
-    <script>
-     
-    </script>
+    <script src="scripts/main.js"></script>
 </body>
-
 </html>
