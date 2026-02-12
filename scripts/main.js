@@ -10,6 +10,7 @@ const predefinedPoints = [
     'Está faltando o anexo do simulador',
     'Está faltando o anexo do DA do seller',
     'Há divergências entre as taxas do simulador e do DA do seller',
+    'O anexo do DA do seller não possui as taxas acordadas',
     'A solicitação para pricing está pendente',
     'O caso de risco não foi criado',
     'O CNPJ do caso de risco é diferente do CNPJ cadastrado na conta',
@@ -268,7 +269,7 @@ function generateMessage() {
         
         message = `Olá, @${recipient}, tudo bem? Fizemos o processo de QA e sua oportunidade foi aprovada. Responsável por sua conta será @${selectedOnboarder}.
 
-Abaixo segue o link de agendamento de integração para ser enviado ao seller:
+Abaixo segue o link de agendamento de integração com ${selectedOnboarder}:
 ${onboarderLink}
 
 Caso tenha dúvidas, estamos à disposição.
