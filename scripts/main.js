@@ -10,6 +10,7 @@ const predefinedPoints = [
     'Está faltando o anexo do simulador',
     'Está faltando o anexo do DA do seller',
     'Há divergências entre as taxas do simulador e do DA do seller',
+    'Há divergências entre as taxas configuradas por pricing e do DA do seller',
     'O anexo do DA do seller não possui as taxas acordadas',
     'A solicitação para pricing está pendente',
     'O caso de risco não foi criado',
@@ -271,6 +272,8 @@ function generateMessage() {
 
 Abaixo segue o link de agendamento de integração com ${selectedOnboarder}:
 ${onboarderLink}
+
+O time de SalesOps não participa de grupos de WhatsApp, caso precise de ajuda com temas relacionados a Integração por gentileza entre em contato via Google Chat no canal oficial Hunting Big Sellers Online Payments.
 
 Caso tenha dúvidas, estamos à disposição.
 Abraço!`;
