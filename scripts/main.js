@@ -6,6 +6,7 @@ const predefinedPoints = [
     'A conta filho não foi criada',
     'A oportunidade está na conta pai',
     'Há um erro de hierarquia na conta, só deve haver uma única conta pai',
+    'A conta não possui Cust ID',
     'Está faltando o anexo do Checklist',
     'Está faltando o anexo do simulador',
     'Está faltando o anexo do DA do seller',
